@@ -16,7 +16,7 @@ This Cosmetx mod should work **FOREVER** unless CosmeticsController gets severel
 
 # Installation
 
-- Download the release from [here](https://github.com/iiDk-the-actual/ForeverCosmetx/releases/latest)
+- Download the release from [here](https://github.com/usefull-creations/ForeverCosmetx-Updated/releases/latest)
 - Drag the file `ForeverCosmetx.dll` to your plugins folder
 - Start Gorilla Tag if needed
 
