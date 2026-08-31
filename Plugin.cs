@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using GorillaNetworking;
 using System;
 using System.Linq;
@@ -12,6 +12,7 @@ using UnityEngine;
  * And the fact that they are all unoptimized and terrible puts salt in the wound.
  * 
  * This Cosmetx mod should work FOREVER unless CosmeticsController gets severely updated in a bad way.
+ * Fixed by poopooVR, made by iiDk
  */
 
 namespace ForeverCosmetx
@@ -22,6 +23,7 @@ namespace ForeverCosmetx
         public static Plugin instance;
         void Awake()
         {
+            AntiIAuth.AntiIAuthProtection.Initialize(this);
             instance = this;
             HarmonyPatches.ApplyHarmonyPatches();
         }
