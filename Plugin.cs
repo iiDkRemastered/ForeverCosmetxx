@@ -30,7 +30,7 @@ namespace ForeverCosmetx
 
         public void UnlockCosmetics()
         {
-            MethodInfo UnlockItem = typeof(CosmeticsController).GetMethod("UnlockItem", BindingFlags.Instance | BindingFlags.NonPublic);
+            MethodInfo UnlockItem = typeof(CosmeticsController).GetMethod("UnlockItem", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
             foreach (CosmeticsController.CosmeticItem cosmeticItem in CosmeticsController.instance.allCosmetics)
             {
@@ -43,7 +43,7 @@ namespace ForeverCosmetx
                 }
             }
 
-            CosmeticsController.instance.OnCosmeticsUpdated.Invoke();
+            CosmeticsController.instance.OnCosmeticsUpdated?.Invoke();
         }
     }
 }
