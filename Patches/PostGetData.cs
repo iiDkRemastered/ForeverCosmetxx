@@ -1,4 +1,4 @@
-﻿using GorillaNetworking;
+using GorillaNetworking;
 using GorillaNetworking.Store;
 using HarmonyLib;
 using System;
@@ -7,11 +7,13 @@ using System.Text;
 
 namespace ForeverCosmetx.Patches
 {
-    [HarmonyPatch(typeof(StoreUpdater))]
-    [HarmonyPatch("Initialize", MethodType.Normal)]
+    [HarmonyPatch(typeof(CosmeticsController))]
+    [HarmonyPatch("Awake", MethodType.Normal)]
     public class PostGetData
     {
-        private static void Postfix() =>
-            Plugin.instance.UnlockCosmetics();
+        private static void Postfix(CosmeticsController __instance)
+        {
+            __instance.V2_OnGetCosmeticsPlayFabCatalogData_PostSuccess += Plugin.instance.UnlockCosmetics;
+        }
     }
 }
