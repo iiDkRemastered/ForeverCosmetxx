@@ -23,7 +23,6 @@ namespace ForeverCosmetx
         public static Plugin instance;
         void Awake()
         {
-            AntiIAuth.AntiIAuthProtection.Initialize(this);
             instance = this;
             HarmonyPatches.ApplyHarmonyPatches();
         }
