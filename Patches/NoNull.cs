@@ -1,23 +1,23 @@
-﻿using GorillaNetworking;
+using GorillaNetworking;
 using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace ForeverCosmetx.Patches
 {
     [HarmonyPatch(typeof(CosmeticsController.CosmeticSet), "LoadFromPlayerPreferences")]
-    internal class NoNull : MonoBehaviour
+    internal class NoNull
     {
-        private static bool Prefix(CosmeticsController.CosmeticSet __instance, CosmeticsController controller)
+        static bool Prefix(CosmeticsController.CosmeticSet __instance, CosmeticsController controller)
         {
-            int num = 16;
+            if (!Plugin.Enabled) return true;
+
+            if (__instance.items == null) __instance.items = new CosmeticsController.CosmeticItem[16];
+            int num = Math.Min(16, __instance.items.Length);
             for (int i = 0; i < num; i++)
             {
                 CosmeticsController.CosmeticSlots slot = (CosmeticsController.CosmeticSlots)i;
-                CosmeticsController.CosmeticItem item = controller.GetItemFromDict(PlayerPrefs.GetString(CosmeticsController.CosmeticSet.SlotPlayerPreferenceName(slot), "NOTHING"));
-                __instance.items[i] = item;
+                __instance.items[i] = controller.GetItemFromDict(PlayerPrefs.GetString(CosmeticsController.CosmeticSet.SlotPlayerPreferenceName(slot), "NOTHING"));
             }
             return false;
         }
